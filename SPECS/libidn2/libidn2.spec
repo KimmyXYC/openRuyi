@@ -51,7 +51,7 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/*@*
 
 %files devel
 %license COPYING*
-%{_libdir}/libidn2*
+%{_libdir}/libidn2.so
 %{_libdir}/pkgconfig/libidn2.pc
 %{_includedir}/*.h
 %{_mandir}/man3/*
