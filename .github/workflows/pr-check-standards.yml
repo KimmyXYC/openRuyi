@@ -1,0 +1,54 @@
+# SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
+# SPDX-FileContributor: lzyprime <2383518170@qq.com>
+# SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
+#
+# SPDX-License-Identifier: MulanPSL-2.0
+
+name: check files standards
+
+permissions:
+  contents: read
+  pull-requests: read
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  check-files-standards:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: check spec files
+      run: |
+        git diff --name-only ${{ github.event.pull_request.base.sha }}...${{ github.event.pull_request.head.sha }} | tee changed-files.txt
+
+        while read -r file; do
+          if [[ "$file" == *.spec ]]; then
+            echo "## Checking spec file: $file"
+            echo ""
+
+            echo "#### Check for %autorelease in Release tags"
+            echo ""
+            grep -n '^Release:' "$file"
+            echo ""
+            grep '^Release:' "$file" | grep '%autorelease' || echo "Error: Release tag in $file does not contain %autorelease"
+            echo ""
+
+            echo '#### Check `#!RemoteAsset` usage'
+            echo ""
+            echo '```log'
+            grep -B 1 -nE '^Source.*:\s*http(s?)://' "$file"
+
+            grep -nE '^Source.*:\s*http(s?)://' "$file" | awk -F':' '{print $1}' | while read -r line_idx; do
+              pre_line=$((line_idx - 1))
+              sed -n "${pre_line}p" "$file" | grep -q '^#!RemoteAsset' || echo "Error: Source line at $line_idx in $file is not preceded by #!RemoteAsset"
+            done
+            echo '```'
+            echo ""
+
+          fi
+        done < changed-files.txt | tee summary.txt
+        cat summary.txt > $GITHUB_STEP_SUMMARY
