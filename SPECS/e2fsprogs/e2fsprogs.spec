@@ -106,13 +106,12 @@ rm -f %{buildroot}%{_libdir}/e2initrd_helper
 
 %if %{with systemd}
 %pre -n e2fsprogs-scrub
-%service_add_pre e2scrub@.service e2scrub_all.service e2scrub_all.timer e2scrub_fail@.service e2scrub_reap.service
 %post -n e2fsprogs-scrub
-%service_add_post e2scrub@.service e2scrub_all.service e2scrub_all.timer e2scrub_fail@.service e2scrub_reap.service
+%systemd_post e2scrub@.service e2scrub_all.service e2scrub_all.timer e2scrub_fail@.service e2scrub_reap.service
 %preun -n e2fsprogs-scrub
-%service_del_preun e2scrub@.service e2scrub_all.service e2scrub_all.timer e2scrub_fail@.service e2scrub_reap.service
+%systemd_preun e2scrub@.service e2scrub_all.service e2scrub_all.timer e2scrub_fail@.service e2scrub_reap.service
 %postun -n e2fsprogs-scrub
-%service_del_postun e2scrub@.service e2scrub_all.service e2scrub_all.timer e2scrub_fail@.service e2scrub_reap.service
+%systemd_postun e2scrub@.service e2scrub_all.service e2scrub_all.timer e2scrub_fail@.service e2scrub_reap.service
 %endif
 
 %ldconfig_scriptlets -n libext2fs2
