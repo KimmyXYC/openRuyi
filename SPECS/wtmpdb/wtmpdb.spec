@@ -51,15 +51,12 @@ the wtmpdb database.
 mkdir -p %{buildroot}%{_mandir}/man1
 ln -sf ../man8/wtmpdb.8 %{buildroot}%{_mandir}/man1/last.1
 
-%pre
-%service_add_pre wtmpdb-update-boot.service wtmpdb-rotate.timer wtmpdbd.socket
-
 %preun
-%service_del_preun wtmpdb-update-boot.service wtmpdb-rotate.timer wtmpdbd.socket
+%systemd_preun wtmpdb-update-boot.service wtmpdb-rotate.timer wtmpdbd.socket
 
 %post
-%tmpfiles_create wtmpdb.conf
-%service_add_post wtmpdb-update-boot.service wtmpdb-rotate.timer wtmpdbd.socket
+%tmpfiles_create_package %{name} %{_tmpfilesdir}/wtmpdb.conf
+%systemd_post wtmpdb-update-boot.service wtmpdb-rotate.timer wtmpdbd.socket
 pam-config -a --wtmpdb --wtmpdb-skip_if=sshd
 /sbin/ldconfig
 
@@ -67,8 +64,7 @@ pam-config -a --wtmpdb --wtmpdb-skip_if=sshd
 if [ "$1" -eq 0 ]; then
     pam-config -d --wtmpdb
 fi
-%service_del_postun_without_restart wtmpdb-update-boot.service
-%service_del_postun wtmpdb-rotate.timer wtmpdbd.socket
+%systemd_postun wtmpdb-update-boot.service wtmpdb-rotate.timer wtmpdbd.socket
 /sbin/ldconfig
 
 %files
