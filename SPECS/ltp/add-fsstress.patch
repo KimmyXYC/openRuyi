@@ -1,0 +1,28 @@
+From 1c3165052f73f24e7e74c932664b34a437879332 Mon Sep 17 00:00:00 2001
+From: Frank Seidel <fseidel@suse.de>
+Date: Fri, 31 Jan 2025 11:19:48 +0100
+Subject: [PATCH] Enable fsstress test in runtest/fs
+
+TODO: Decide if forward upstream.
+
+Signed-off-by: Frank Seidel <fseidel@suse.de>
+Signed-off-by: Petr Vorel <pvorel@suse.cz>
+---
+ runtest/fs | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/runtest/fs b/runtest/fs
+index 1d753e0ddf..596d094f4c 100644
+--- a/runtest/fs
++++ b/runtest/fs
+@@ -57,6 +57,7 @@ ftest05 ftest05
+ ftest06 ftest06
+ ftest07 ftest07
+ ftest08 ftest08
++fsstress01 fsstress -c -d /tmp/ -l 100 -p 1000
+ 
+ lftest01	lftest
+ writetest01	writetest
+-- 
+2.47.2
+
