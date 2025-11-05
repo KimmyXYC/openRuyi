@@ -15,7 +15,13 @@
 %bcond shared 0
 %endif
 
+%ifarch x86_64
+%global gohostarch amd64
+%endif
+%ifarch riscv64
 %global gohostarch riscv64
+%endif
+
 # we are shipping the full contents of src in the data subpackage, which
 # contains binary-like things (ELF data for tests, etc)
 %global _binaries_in_noarch_packages_terminate_build 0
