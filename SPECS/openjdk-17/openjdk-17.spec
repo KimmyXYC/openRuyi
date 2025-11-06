@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Dingli Zhang <dingli@iscas.ac.cn>
+# SPDX-FileContributor: Jingkun Zheng <zhengjingkun@iscas.ac.cn>
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
@@ -24,6 +25,8 @@ Source0:        https://github.com/openjdk/jdk%{majorver}u/archive/refs/tags/jdk
 %if %{with bootstrap}
 #!RemoteAsset
 Source1:        https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.16%2B8/OpenJDK17U-jdk_riscv64_linux_hotspot_17.0.16_8.tar.gz
+#!RemoteAsset
+Source2:        https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.16%2B8/OpenJDK17U-jdk_x64_linux_hotspot_17.0.16_8.tar.gz
 %endif
 
 Patch0:         8354941-Build-failure-with-glibc-2.42-due-to-uabs-na.patch
@@ -62,8 +65,14 @@ The OpenJDK 17 runtime environment.
 
 %build
 %if %{with bootstrap}
+%ifarch riscv64
 tar -xf %{SOURCE1} -C %{_tmppath}
 BOOTJDKPATH=%{_tmppath}/jdk-17.0.16+8
+%endif
+%ifarch x86_64
+tar -xf %{SOURCE2} -C %{_tmppath}
+BOOTJDKPATH=%{_tmppath}/jdk-17.0.16+8
+%endif
 %else
 BOOTJDKPATH=%{_jvmdir}/java-17-openjdk
 %endif
