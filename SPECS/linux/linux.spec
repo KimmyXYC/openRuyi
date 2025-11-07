@@ -9,12 +9,9 @@
 #!BuildConstraint: hardware:jobs 32
 %endif
 
-%{!?_debugdir: %global _debugdir %{_prefix}/lib/debug}
-
 %global signmodules 1
 %global kver %{version}-%{release}
 %global kernel_make_flags LD=ld.bfd KBUILD_BUILD_VERSION=%{release}
-%global debug_package %{nil}
 Name:             linux
 Version:          6.17.5
 Release:          %autorelease
@@ -79,14 +76,6 @@ external kernel modules against the installed kernel. The development files are
 located at %{_usrsrc}/kernels/%{kver}, with symlinks provided under
 %{_prefix}/lib/modules/%{kver}/ for compatibility.
 
-%package debuginfo
-Summary:          Debug information for the Linux kernel
-Requires:         %{name} = %{version}-%{release}
-
-%description debuginfo
-Contains the unstripped vmlinux file for debugging the kernel. This is
-essential for tools like crash or for advanced kernel debugging.
-
 %prep
 %autosetup -p1
 cp %{SOURCE1} .config
@@ -102,8 +91,7 @@ echo "-%{release}" > localversion
 %define modpath %{buildroot}%{_libdir}/modules/%{kver}
 %define kpath %{buildroot}%{_prefix}/lib/kernel
 %define ksrcpath %{buildroot}%{_usrsrc}/kernels/%{kver}
-%define debugpath %{buildroot}%{_debugdir}%{_lib}/modules/%{kver}
-install -d %{modpath} %{kpath} %{ksrcpath} %{debugpath}
+install -d %{modpath} %{kpath} %{ksrcpath}
 
 %make_build %{kernel_make_flags} INSTALL_MOD_PATH=%{buildroot}%{_prefix} INSTALL_MOD_STRIP=1 DEPMOD=true modules_install
 
@@ -113,7 +101,6 @@ ln -sf ../../../../src/kernels/%{kver} %{modpath}/build
 ln -sf ../../../../src/kernels/%{kver} %{modpath}/source
 
 install -Dm644 $(make %{kernel_make_flags} -s image_name) %{kpath}/vmlinuz-%{kver}
-install -m644 vmlinux %{debugpath}/vmlinux
 
 echo "Module signing would happen here for version %{kver}."
 
@@ -140,9 +127,6 @@ fi
 %{_usrsrc}/kernels/%{kver}/
 %{_libdir}/modules/%{kver}/build
 %{_libdir}/modules/%{kver}/source
-
-%files debuginfo
-%{_debugdir}%{_lib}/modules/%{kver}/vmlinux
 
 %changelog
 %{?autochangelog}
