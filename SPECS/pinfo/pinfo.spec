@@ -46,9 +46,9 @@ expressions and is based on the ncurses library.
 
 %install -a
 rm -f %{buildroot}%{_infodir}/dir
-%find_lang %{name}
+%find_lang %{name} --generate-subpackages
 
-%files -f %{name}.lang
+%files
 %license COPYING
 %doc AUTHORS NEWS README.md TECHSTUFF
 %config(noreplace) %{_sysconfdir}/pinforc
