@@ -54,7 +54,6 @@ BuildRequires:  perl(warnings)
 BuildRequires:  boost-devel
 # Need when Source/CParse/parser.y is patched
 BuildRequires:  bison
-BuildRequires:  guile-devel
 BuildRequires:  lua-devel
 
 %description
