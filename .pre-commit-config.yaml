@@ -18,7 +18,15 @@ repos:
     -   id: check-toml
     -   id: check-yaml
 # TODO:
-# -   repo: https://github.com/fsfe/reuse-tool
-#     rev: v6.1.0
-#     hooks:
-#       - id: reuse
+-   repo: https://github.com/fsfe/reuse-tool
+    rev: v6.1.0
+    hooks:
+      - id: reuse
+        name: Run reuse annotate
+        pass_filenames: true
+        files: \.spec$
+        args: ["annotate", "--copyright-prefix", "spdx-c",
+               "--style" ,"python",
+               "-c" ,"openRuyi Project Contributors" ,
+               "-c" ,"Institute of Software, Chinese Academy of Sciences (ISCAS)",
+               -l, "MulanPSL-2.0" ]
