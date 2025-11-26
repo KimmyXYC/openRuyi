@@ -1,0 +1,15 @@
+diff --git a/pyproject.toml b/pyproject.toml
+index a647221..fd2dd59 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -10,9 +10,7 @@ build-backend = "setuptools.build_meta"
+ # https://peps.python.org/pep-0621/
+ [project]
+ name = "python-debian"
+-dynamic = [
+-    "version",
+-]
++version = "1.0.1"
+ description = "Modules to read and manipulate many file formats related to Debian packages and repositories"
+ readme = "README.rst"
+ requires-python = ">=3.7"
