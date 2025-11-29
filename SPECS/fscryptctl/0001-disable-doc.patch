@@ -1,0 +1,31 @@
+diff --git a/Makefile b/Makefile
+index 9b28c8c..cc3f518 100644
+--- a/Makefile
++++ b/Makefile
+@@ -63,7 +63,7 @@ $(OBJ): %.o: %.c $(HDRS)
+ # Build the manual page
+ 
+ fscryptctl.1: fscryptctl.1.md
+-	pandoc -s -t man $+ > $@
++# 	pandoc -s -t man $+ > $@
+ 
+ ##############################################################################
+ 
+@@ -142,14 +142,14 @@ install-bin: fscryptctl
+ 	install -m755 $< $(DESTDIR)$(BINDIR)
+ 
+ install-man: fscryptctl.1
+-	install -d $(DESTDIR)$(MANDIR)/man1
+-	install -m644 $< $(DESTDIR)$(MANDIR)/man1
++# 	install -d $(DESTDIR)$(MANDIR)/man1
++# 	install -m644 $< $(DESTDIR)$(MANDIR)/man1
+ 
+ install:install-bin install-man
+ 
+ uninstall:
+ 	rm -f $(DESTDIR)$(BINDIR)/fscryptctl
+-	rm -f $(DESTDIR)$(MANDIR)/man1/fscryptctl.1
++# 	rm -f $(DESTDIR)$(MANDIR)/man1/fscryptctl.1
+ 
+ clean:
+ 	rm -f fscryptctl fscryptctl.1 *.o *.pyc
