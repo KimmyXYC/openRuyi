@@ -31,14 +31,15 @@ BuildRequires:  python3-pip
 BuildRequires:  util-linux-devel
 
 Requires:       dpdk
-Requires:       numactl-libs
-Requires:       openssl-libs
-Requires:       libiscsi
+Requires:       numactl
+Requires:       openssl
+# TODO: Enable it when we have these two BuildRequires
+# NVMe over Fabrics
+#Requires:       librdmacm
+#Requires:       libiscsi
 Requires:       libaio
 Requires:       libuuid
 Requires:       fuse3
-# NVMe over Fabrics
-Requires:       librdmacm
 
 %description
 The Storage Performance Development Kit provides a set of tools
