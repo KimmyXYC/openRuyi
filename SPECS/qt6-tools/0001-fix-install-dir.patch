@@ -1,0 +1,39 @@
+diff --git a/examples/designer/containerextension/CMakeLists.txt b/examples/designer/containerextension/CMakeLists.txt
+index 2b2c150..0439c0b 100644
+--- a/examples/designer/containerextension/CMakeLists.txt
++++ b/examples/designer/containerextension/CMakeLists.txt
+@@ -37,7 +37,7 @@ target_link_libraries(containerextension PUBLIC
+ 
+ if(QT6_INSTALL_PREFIX)
+ #! [3]
+-   set(INSTALL_EXAMPLEDIR "${QT6_INSTALL_PREFIX}/${QT6_INSTALL_PLUGINS}/designer")
++   set(INSTALL_EXAMPLEDIR "/usr/${QT6_INSTALL_PLUGINS}/designer")
+ #! [3]
+ else()
+    if(NOT DEFINED INSTALL_EXAMPLESDIR)
+diff --git a/examples/designer/customwidgetplugin/CMakeLists.txt b/examples/designer/customwidgetplugin/CMakeLists.txt
+index 259661c..8e073e2 100644
+--- a/examples/designer/customwidgetplugin/CMakeLists.txt
++++ b/examples/designer/customwidgetplugin/CMakeLists.txt
+@@ -35,7 +35,7 @@ target_link_libraries(customwidgetplugin PUBLIC
+ 
+ if(QT6_INSTALL_PREFIX)
+ #! [3]
+-   set(INSTALL_EXAMPLEDIR "${QT6_INSTALL_PREFIX}/${QT6_INSTALL_PLUGINS}/designer")
++   set(INSTALL_EXAMPLEDIR "/usr/${QT6_INSTALL_PLUGINS}/designer")
+ #! [3]
+ else()
+    if(NOT DEFINED INSTALL_EXAMPLESDIR)
+diff --git a/examples/designer/taskmenuextension/CMakeLists.txt b/examples/designer/taskmenuextension/CMakeLists.txt
+index b1ed491..c8ffc53 100644
+--- a/examples/designer/taskmenuextension/CMakeLists.txt
++++ b/examples/designer/taskmenuextension/CMakeLists.txt
+@@ -37,7 +37,7 @@ target_link_libraries(taskmenuextension PUBLIC
+ 
+ if(QT6_INSTALL_PREFIX)
+ #! [3]
+-   set(INSTALL_EXAMPLEDIR "${QT6_INSTALL_PREFIX}/${QT6_INSTALL_PLUGINS}/designer")
++   set(INSTALL_EXAMPLEDIR "/usr/${QT6_INSTALL_PLUGINS}/designer")
+ #! [3]
+ else()
+    if(NOT DEFINED INSTALL_EXAMPLESDIR)
