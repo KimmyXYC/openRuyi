@@ -10,6 +10,7 @@ Release:        %autorelease
 Summary:        Expand tabs and do simple line wrapping
 License:        TTWL
 URL:            https://metacpan.org/release/Text-Tabs%2BWrap
+#!RemoteAsset
 Source0:        https://cpan.metacpan.org/authors/id/A/AR/ARISTOTLE/Text-Tabs+Wrap-%{version}.tar.gz
 BuildArch:      noarch
 
