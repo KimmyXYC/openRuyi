@@ -17,10 +17,10 @@ Patch:          0001-support-lpeg1.1.0.patch
 BuildSystem:    autotools
 
 BuildRequires:  lua-devel
-BuildRequires:  lua-lpeg
 
-Requires:       lua(abi)
-Requires:       lua-lpeg
+Requires:       lua >= 5.1
+Requires:       lua-lpeg >= 0.8.1
+BuildArch:      noarch
 
 %description
 LuaJSON is a customizable JSON decoder/encoder, using LPEG for parsing.
