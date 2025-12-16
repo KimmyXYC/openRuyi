@@ -292,6 +292,13 @@ Provides translations for the \"%{-n:%{-n*}}%{!-n:%{name}}\" package.
 %build_cxx %{__cxx}
 %build_cpp %{__cpp}
 
+# Use SHA-256 for FILEDIGESTS instead of default MD5
+%_source_filedigest_algorithm 8
+%_binary_filedigest_algorithm 8
+
+# Use zstd for binary payloads
+%_binary_payload w19.zstdio
+
 # Expands to shell code to set the compiler/linker environment
 # variables CFLAGS, CXXFLAGS, FFLAGS, FCFLAGS, LDFLAGS if they have
 # not been set already.
