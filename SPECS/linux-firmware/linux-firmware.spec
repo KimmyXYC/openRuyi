@@ -8,15 +8,13 @@
 %global _firmwarepath /usr/lib/firmware
 
 Name:           linux-firmware
-Version:        20251011
+Version:        20251125
 Release:        %autorelease
 Summary:        Firmware files used by the Linux kernel
 License:        GPL-1.0-or-later AND GPL-2.0-or-later AND MIT AND LicenseRef-openRuyi-Redistributable-no-modification-permitted
 URL:            https://www.kernel.org/
-#!RemoteAsset
+#!RemoteAsset:  sha256:eb807a01c52882ac97ef5b678d4a246b209e6165ac1287d62a5f93a09ee93cd2
 Source0:        https://www.kernel.org/pub/linux/kernel/firmware/%{name}-%{version}.tar.xz
-#!RemoteAsset
-Source1:        https://www.kernel.org/pub/linux/kernel/firmware/%{name}-%{version}.tar.sign
 
 BuildRequires:  make
 BuildRequires:  git
