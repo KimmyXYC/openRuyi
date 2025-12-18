@@ -1,0 +1,13 @@
+diff --git a/alloc.c b/alloc.c
+index 4fe49ff..6790321 100644
+--- a/alloc.c
++++ b/alloc.c
+@@ -109,7 +109,7 @@ timespec_to_nsec(struct timespec ts)
+ 	return (int64_t)ts.tv_sec * NSEC_PER_SEC + ts.tv_nsec;
+ }
+ 
+-static const int64_t DEFAULT_ALLOC_TIMEOUT_NSEC = 1000 * 1000; // 1ms
++static const int64_t DEFAULT_ALLOC_TIMEOUT_NSEC = 100 * 1000 * 1000; // 100ms
+ 
+ static bool
+ check_deadline(struct timespec start, int64_t timeout_ns)
