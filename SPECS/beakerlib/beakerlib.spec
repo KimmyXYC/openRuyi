@@ -51,6 +51,9 @@ Files for syntax highlighting BeakerLib tests in VIM editor
 mkdir -p %{buildroot}%{_tmpfilesdir}
 install -m 0644 %{SOURCE1} %{buildroot}%{_tmpfilesdir}/%{name}.conf
 
+# No check
+%check
+
 %files
 %dir %{_datadir}/beakerlib
 %dir %{_datadir}/beakerlib/xslt-templates
