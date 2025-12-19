@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
+# SPDX-FileContributor: yyjeqhc <jialin.oerv@isrc.iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -26,6 +27,7 @@ BuildSystem:    autotools
 # Also extract %%{SOURCE2}
 BuildOption(prep):  -a 2
 BuildOption(build):  VERSION=%{version} ZFLAGS="-b fat" DATAFORM=vanguard tzdata.zi
+BuildOption(check):  CC=%__cc
 
 BuildRequires:  make
 BuildRequires:  perl
