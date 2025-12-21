@@ -15,6 +15,8 @@ URL:            https://www.greenwoodsoftware.com/less/
 Source0:        https://ftpmirror.gnu.org/gnu/less/less-%{version}.tar.gz
 BuildSystem:    autotools
 
+BuildOption(check):  LIBS="-lncurses -ltinfo"
+
 BuildRequires:  automake
 BuildRequires:  ncurses-devel
 BuildRequires:  pkgconfig
