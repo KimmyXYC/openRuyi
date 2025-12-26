@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
+# SPDX-FileContributor: yyjeqhc <jialin.oerv@isrc.iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -13,7 +14,7 @@
 %bcond dracut 0
 
 Name:           unbound
-Version:        1.24.1
+Version:        1.24.2
 Release:        %autorelease
 Summary:        Validating, recursive, and caching DNS(SEC) resolver
 License:        BSD-3-Clause
@@ -41,6 +42,9 @@ Source15:       unbound-munin.README
 Source16:       unbound-anchor.service
 Source17:       unbound.sysusers
 BuildSystem:    autotools
+
+# high version swig change the way to gen code.
+Patch0:         0001-adjust-to-high-swig.patch
 
 BuildOption(conf):  --disable-rpath
 BuildOption(conf):  --disable-static
@@ -126,7 +130,7 @@ Plugin for the munin / munin-node monitoring package
 %package        devel
 Summary:        Development package that includes the unbound header files
 Requires:       %{name}-libs = %{version}-%{release}
-Requires:       openssl-devel
+Requires:       pkgconfig(openssl)
 Requires:       pkgconfig
 
 %description    devel
@@ -235,8 +239,8 @@ echo ".so man8/unbound-control.8" > %{buildroot}/%{_mandir}/man8/unbound-control
 
 %files
 %doc doc/CREDITS doc/FEATURES
-%{_unitdir}/%{name}.service
-%{_unitdir}/%{name}-keygen.service
+%{_unitdir}/unbound.service
+%{_unitdir}/unbound-keygen.service
 %attr(0775,unbound,root) %dir %{_rundir}/%{name}
 %attr(0644,root,root) %{_tmpfilesdir}/unbound.conf
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/%{name}/unbound.conf
