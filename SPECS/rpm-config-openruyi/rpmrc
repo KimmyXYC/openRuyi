@@ -1,4 +1,4 @@
 include: /usr/lib/rpm/rpmrc
 
-optflags: riscv64 -O2 -g -march=rva23u64
-optflags: x86_64  -O2 -g
+optflags: riscv64 %{openruyi_optflags_riscv64}
+optflags: x86_64  %{openruyi_optflags_x86_64}
