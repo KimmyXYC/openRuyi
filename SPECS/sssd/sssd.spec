@@ -83,6 +83,10 @@ BuildRequires:  pkgconfig(tdb)
 BuildRequires:  pkgconfig(tevent)
 BuildRequires:  pkgconfig(uuid)
 BuildRequires:  shadow-devel
+# Tests
+BuildRequires:  softhsm
+BuildRequires:  openssh
+BuildRequires:  bc
 
 %description
 This package provides a set of daemons to manage access to remote directories
