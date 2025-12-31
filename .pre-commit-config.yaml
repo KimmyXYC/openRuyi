@@ -52,6 +52,7 @@ repos:
         pass_filenames: true
         files: \.spec$
         args: ["annotate", "--copyright-prefix", "spdx-c",
+               "--merge-copyrights",
                "--style" ,"python",
                "-c" ,"openRuyi Project Contributors" ,
                "-c" ,"Institute of Software, Chinese Academy of Sciences (ISCAS)",
