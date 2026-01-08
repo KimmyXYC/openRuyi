@@ -1,17 +1,17 @@
-# SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
-# SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
+# SPDX-FileCopyrightText: (C) 2025, 2026 Institute of Software, Chinese Academy of Sciences (ISCAS)
+# SPDX-FileCopyrightText: (C) 2025, 2026 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
 Name:           gpgme
-Version:        2.0.0
+Version:        2.0.1
 Release:        %autorelease
 Summary:        GnuPG Made Easy
 License:        LGPL-2.1-or-later AND MIT
 URL:            https://gnupg.org/related_software/gpgme/
-#!RemoteAsset
+#!RemoteAsset:  sha256:821ab0695c842eab51752a81980c92b0410c7eadd04103f791d5d2a526784966
 Source:         https://gnupg.org/ftp/gcrypt/gpgme/gpgme-%{version}.tar.bz2
 BuildSystem:    autotools
 
@@ -45,6 +45,7 @@ rm -fv %{buildroot}%{_infodir}/dir
 %files
 %license COPYING*
 %doc AUTHORS ChangeLog NEWS README THANKS TODO VERSION
+%{_bindir}/gnupg-key-manage
 %{_bindir}/gpgme-json
 %{_libdir}/libgpgme.so.45*
 
