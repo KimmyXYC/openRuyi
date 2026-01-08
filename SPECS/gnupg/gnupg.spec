@@ -1,17 +1,17 @@
-# SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
-# SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
+# SPDX-FileCopyrightText: (C) 2025, 2026 Institute of Software, Chinese Academy of Sciences (ISCAS)
+# SPDX-FileCopyrightText: (C) 2025, 2026 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
 Name:           gnupg
-Version:        2.5.12
+Version:        2.5.16
 Release:        %autorelease
 Summary:        File encryption, decryption, signature creation and verification utility
 License:        GPL-3.0-or-later
 URL:            https://www.gnupg.org
-#!RemoteAsset
+#!RemoteAsset:  sha256:05144040fedb828ced2a6bafa2c4a0479ee4cceacf3b6d68ccc75b175ac13b7e
 Source0:        https://gnupg.org/ftp/gcrypt/gnupg/gnupg-%{version}.tar.bz2
 Source1:        scdaemon.udev
 BuildSystem:    autotools
@@ -27,7 +27,7 @@ BuildRequires:  expect fdupes texinfo npth-devel openldap-devel pkgconfig readli
 BuildRequires:  libassuan-devel
 BuildRequires:  glibc-devel
 BuildRequires:  libgcrypt-devel
-BuildRequires:  libgpg-error-devel
+BuildRequires:  libgpg-error-devel >= 1.56
 BuildRequires:  libksba-devel libksba
 BuildRequires:  pkgconfig(bzip2)
 BuildRequires:  pkgconfig(gnutls)
