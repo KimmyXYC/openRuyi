@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -12,24 +13,26 @@ License:        BSD-3-Clause
 URL:            https://github.com/westes/flex
 #!RemoteAsset
 Source:         https://github.com/westes/flex/releases/download/v%{version}/flex-%{version}.tar.gz
+BuildSystem:    autotools
+
 BuildRequires:  autoconf
 BuildRequires:  automake
 BuildRequires:  gcc-c++
 BuildRequires:  help2man
 BuildRequires:  libtool
 BuildRequires:  m4
+
 Requires:       m4
-BuildSystem:    autotools
 
 %description
 FLEX is a tool for generating scanners: programs that recognize lexical
 patterns in text.
 
-%package devel
+%package        devel
 Summary:        Development files for flex
-Requires:       flex = %{version}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
-%description devel
+%description    devel
 FLEX is a tool for generating scanners: programs that recognize lexical
 patterns in text.
 
@@ -54,11 +57,12 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/*@*
 %{_infodir}/*
 %{_libdir}/libfl.so.*
 
-%files -n flex-devel
+%files devel
 %license COPYING
 %doc AUTHORS ChangeLog NEWS ONEWS README.md THANKS
 %{_includedir}/FlexLexer.h
 %{_libdir}/libfl.so
 %{_libdir}/libfl.a
+
 %changelog
 %{?autochangelog}
