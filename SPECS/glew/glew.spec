@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
@@ -22,7 +23,6 @@ BuildOption(build):  includedir=%{_includedir}
 BuildOption(build):  BINDIR=%{_bindir}
 BuildOption(build):  LIBDIR=%{_libdir}
 BuildOption(build):  PKGDIR=%{_libdir}/pkgconfig
-
 BuildOption(install):  install.all
 BuildOption(install):  DESTDIR=%{buildroot}
 BuildOption(install):  GLEW_PREFIX=%{_prefix}
@@ -47,7 +47,7 @@ This package contains the demo GLEW utilities.
 
 %package        devel
 Summary:        Development files for glew
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       pkgconfig(glu)
 
 %description    devel
