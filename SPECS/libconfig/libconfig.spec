@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -11,12 +12,13 @@ Release:        %autorelease
 Summary:        C/C++ configuration file library
 License:        LGPL-2.1-or-later AND GPL-3.0-or-later WITH Bison-exception-2.2
 URL:            https://hyperrealm.github.io/libconfig/
+VCS:            git:https://github.com/hyperrealm/libconfig
 #!RemoteAsset
 Source:         https://github.com/hyperrealm/libconfig/archive/refs/tags/v%{version}.tar.gz
 BuildSystem:    cmake
 
-BuildOption(conf): -DBUILD_TESTS:BOOL=OFF
-BuildOption(conf): -DBUILD_EXAMPLES:BOOL=OFF
+BuildOption(conf):  -DBUILD_TESTS:BOOL=OFF
+BuildOption(conf):  -DBUILD_EXAMPLES:BOOL=OFF
 
 BuildRequires:  cmake
 BuildRequires:  gcc
@@ -32,7 +34,7 @@ type-aware, so it is not necessary to do string parsing in application code.
 
 %package        devel
 Summary:        Development files for libconfig
-Requires:       %{name} = %{version}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description    devel
 Development libraries and headers for developing software against libconfig.
