@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -17,33 +18,41 @@ Source1:        jsonnet.1
 Source2:        jsonnetfmt.1
 BuildSystem:    cmake
 
-BuildOption(conf): -DBUILD_TESTS:BOOL=OFF
-BuildOption(conf): -DBUILD_SHARED_BINARIES:BOOL=ON
-BuildOption(conf): -DBUILD_STATIC_LIBS:BOOL=OFF
-BuildOption(conf): -DUSE_SYSTEM_JSON:BOOL=ON
-BuildOption(conf): -DBUILD_STATIC_LIBS=OFF
-BuildOption(conf): -DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
+BuildOption(conf):  -DBUILD_TESTS:BOOL=OFF
+BuildOption(conf):  -DBUILD_SHARED_BINARIES:BOOL=ON
+BuildOption(conf):  -DBUILD_STATIC_LIBS:BOOL=OFF
+BuildOption(conf):  -DUSE_SYSTEM_JSON:BOOL=ON
+BuildOption(conf):  -DBUILD_STATIC_LIBS=OFF
+BuildOption(conf):  -DCMAKE_POLICY_VERSION_MINIMUM:STRING=3.5
 
-BuildRequires:  python3-devel pyproject-rpm-macros
-BuildRequires:  python3dist(wheel) python3dist(setuptools)
-BuildRequires:  bash cmake gcc gcc-c++ make
-BuildRequires:  nlohmann-json python3-pip
+BuildRequires:  pkgconfig(python3)
+BuildRequires:  pyproject-rpm-macros
+BuildRequires:  python3dist(wheel)
+BuildRequires:  python3dist(setuptools)
+BuildRequires:  bash
+BuildRequires:  cmake
+BuildRequires:  gcc
+BuildRequires:  gcc-c++
+BuildRequires:  make
+BuildRequires:  nlohmann-json
+BuildRequires:  python3-pip
 
 %description
 A data templating language for app and tool developers based on JSON.
 
-%package -n     python3-%{name}
+%package     -n python-%{name}
 Summary:        %{name} Bindings for Python
-Requires:       %{name} = %{version}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Provides:       python3-%{name} = %{version}-%{release}
+%python_provide python3-%{name}
 
-%description -n python3-%{name}
+%description -n python-%{name}
 Python bindings for the jsonnet data templating language.
-
 
 %package        devel
 Summary:        Development Headers for %{name}
 License:        Apache-2.0
-Requires:       %{name} = %{version}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description    devel
 Development headers for the jsonnet data templating language.
@@ -81,7 +90,7 @@ install -t '%{buildroot}%{_mandir}/man1' -p -m 0644 '%{SOURCE1}' '%{SOURCE2}'
 %{_libdir}/libjsonnet.so
 %{_libdir}/libjsonnet++.so
 
-%files -n python3-jsonnet -f %{pyproject_files}
+%files -n python-%{name} -f %{pyproject_files}
 
 %changelog
 %{?autochangelog}
