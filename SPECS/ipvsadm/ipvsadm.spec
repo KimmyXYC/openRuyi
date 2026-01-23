@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: yyjeqhc <jialin.oerv@isrc.iscas.ac.cn>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -25,8 +26,8 @@ BuildOption(install):  MAN=%{buildroot}%{_mandir}/man8
 BuildOption(install):  INIT=%{buildroot}%{_initrddir}
 
 BuildRequires:  gcc
-Buildrequires:  pkgconfig(libnl-3.0)
-Buildrequires:  pkgconfig(popt)
+BuildRequires:  pkgconfig(libnl-3.0)
+BuildRequires:  pkgconfig(popt)
 BuildRequires:  pkgconfig(libsystemd)
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  make
