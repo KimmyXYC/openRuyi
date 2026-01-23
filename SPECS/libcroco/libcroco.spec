@@ -1,34 +1,38 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Xuhai Chang <xuhai.oerv@isrc.iscas.ac.cn>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
-Name:             libcroco
-Summary:          A CSS2 parsing library
-Version:          0.6.13
-Release:          %autorelease
-License:          LGPLv2
+Name:           libcroco
+Summary:        A CSS2 parsing library
+Version:        0.6.13
+Release:        %autorelease
+License:        LGPL-2.0-only
 #!RemoteAsset
-Source0:          https://download.gnome.org/sources/libcroco/0.6/%{name}-%{version}.tar.xz
+Source0:        https://download.gnome.org/sources/libcroco/0.6/%{name}-%{version}.tar.xz
+BuildSystem:    autotools
+
 # provide pkgconfig
-Patch0:           0001-libcroco-0.6.1-multilib.patch
+Patch0:         0001-libcroco-0.6.1-multilib.patch
 # https://gitlab.gnome.org/GNOME/libcroco/-/merge_requests/5
-Patch1:           0002-CVE-2020-12825.patch
-BuildSystem:      autotools
-BuildRequires:    pkgconfig
-BuildRequires:    pkgconfig(glib-2.0)
-BuildRequires:    pkgconfig(libxml-2.0)
-BuildOption(conf): --disable-static
+Patch1:         0002-CVE-2020-12825.patch
+
+BuildOption(conf):  --disable-static
+
+BuildRequires:  pkgconfig
+BuildRequires:  pkgconfig(glib-2.0)
+BuildRequires:  pkgconfig(libxml-2.0)
 
 %description
 CSS2 parsing and manipulation library for GNOME
 
-%package devel
-Summary:          Libraries and include files for developing with libcroco
-Requires:         %{name}%{?_isa} = %{version}-%{release}
+%package        devel
+Summary:        Libraries and include files for developing with libcroco
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
-%description devel
+%description    devel
 This package provides the necessary development libraries and include
 files to allow you to develop with libcroco.
 
