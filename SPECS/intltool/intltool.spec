@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -11,12 +12,19 @@ Release:        %autorelease
 Summary:        Utility scripts for internationalizing XML
 License:        GPL-2.0-or-later
 URL:            https://launchpad.net/intltool
+# VCS: Bazzar upstream will be deprecated so no upstream?? - 251
 #!RemoteAsset
 Source:         https://launchpad.net/intltool/trunk/%{version}/+download/intltool-%{version}.tar.gz
 BuildSystem:    autotools
 
-BuildRequires:        perl perl(XML::Parser)
-Requires:       automake gettext-devel perl(XML::Parser) perl(Getopt::Long) patch
+BuildRequires:  perl
+BuildRequires:  perl(XML::Parser)
+
+Requires:       automake
+Requires:       gettext-devel
+Requires:       perl(XML::Parser)
+Requires:       perl(Getopt::Long)
+Requires:       patch
 
 %description
 Intltool is a collection of scripts that helps with extracting translatable
