@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -15,10 +16,12 @@ URL:            https://github.com/latchset/jose
 Source0:        https://github.com/latchset/jose/releases/download/v%{version}/jose-%{version}.tar.xz
 BuildSystem:    meson
 
-BuildOption(conf): -Ddocs=disabled
+BuildOption(conf):  -Ddocs=disabled
 
-BuildRequires:  gcc meson ninja
-BuildRequires:  jansson-devel
+BuildRequires:  gcc
+BuildRequires:  meson
+BuildRequires:  ninja
+BuildRequires:  pkgconfig(jansson)
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(zlib)
 
@@ -28,15 +31,14 @@ Encryption (JOSE) standards. It provides a command-line utility which
 encompasses most of the JOSE features, allowing for easy integration into
 projects and one-off scripts.
 
-%package devel
+%package        devel
 Summary:        Development libraries and files for libjose
-Requires:       %{name} = %{version}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       pkgconfig(jansson)
 
-%description devel
+%description    devel
 This package contains the libraries, header files, and documentation for
 developing applications that use the José library.
-
 
 %install -a
 rm -f %{buildroot}%{_licensedir}/%{name}/COPYING
