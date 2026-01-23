@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: yyjeqhc <jialin.oerv@isrc.iscas.ac.cn>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -18,14 +19,13 @@ BuildSystem:    autotools
 BuildOption(build):  V=1
 BuildOption(build):  CFLAGS="-g -O2 -Wall -W -std=gnu99 -Werror=format-security %{optflags}"
 BuildOption(build):  LDFLAGS="%{build_ldflags}"
-
 BuildOption(install):  prefix=%{_prefix}
 BuildOption(install):  sbindir=%{_sbindir}
 BuildOption(install):  DESTDIR=%{buildroot}
 
 BuildRequires:  make
 BuildRequires:  gcc
-BuildRequires:  ncurses-devel
+BuildRequires:  pkgconfig(ncurses)
 
 %description
 IPTraf-ng is a console-based network monitoring utility. It gathers data like
