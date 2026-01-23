@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: (C) 2025, 2026 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -11,39 +12,39 @@ Release:        %autorelease
 Summary:        An HTTP/2-based Remote Procedure Call framework
 License:        Apache-2.0
 URL:            https://grpc.io/
+VCS:            git:https://github.com/grpc/grpc
 #!RemoteAsset
 Source:         https://github.com/grpc/grpc/archive/refs/tags/v%{version}.tar.gz
+BuildSystem:    cmake
+
 # From openSUSE:Factory:RISCV/grpc to fix unresolved deps: pkgconfig(opentelemetry_api)
 Patch0:         telemetry.patch
 # From https://github.com/grpc/grpc/pull/41351
 Patch1:         add-missing-includes.patch
 
-BuildSystem:    cmake
-
-BuildOption(conf): -DgRPC_INSTALL:BOOL=ON
-BuildOption(conf): -DgRPC_INSTALL_LIBDIR:PATH="%_lib"
-BuildOption(conf): -DgRPC_INSTALL_CMAKEDIR:PATH="%_libdir/cmake/grpc"
-
-BuildOption(conf): -DgRPC_ABSL_PROVIDER=package
-BuildOption(conf): -DgRPC_CARES_PROVIDER=package
-BuildOption(conf): -DgRPC_PROTOBUF_PROVIDER=package
-BuildOption(conf): -DgRPC_RE2_PROVIDER=package
-BuildOption(conf): -DgRPC_SSL_PROVIDER=package
-BuildOption(conf): -DgRPC_ZLIB_PROVIDER=package
-BuildOption(conf): -DCMAKE_CXX_STANDARD=17
-BuildOption(conf): -DgRPC_BENCHMARK_PROVIDER=none
-BuildOption(conf): -DgRPC_BENCHMARK_PROVIDER=OFF
-BuildOption(conf): -DgRPC_BUILD_TESTS=OFF
-BuildOption(conf): -DgRPC_DOWNLOAD_ARCHIVES:BOOL=OFF
+BuildOption(conf):  -DgRPC_INSTALL:BOOL=ON
+BuildOption(conf):  -DgRPC_INSTALL_LIBDIR:PATH="%_lib"
+BuildOption(conf):  -DgRPC_INSTALL_CMAKEDIR:PATH="%_libdir/cmake/grpc"
+BuildOption(conf):  -DgRPC_ABSL_PROVIDER=package
+BuildOption(conf):  -DgRPC_CARES_PROVIDER=package
+BuildOption(conf):  -DgRPC_PROTOBUF_PROVIDER=package
+BuildOption(conf):  -DgRPC_RE2_PROVIDER=package
+BuildOption(conf):  -DgRPC_SSL_PROVIDER=package
+BuildOption(conf):  -DgRPC_ZLIB_PROVIDER=package
+BuildOption(conf):  -DCMAKE_CXX_STANDARD=17
+BuildOption(conf):  -DgRPC_BENCHMARK_PROVIDER=none
+BuildOption(conf):  -DgRPC_BENCHMARK_PROVIDER=OFF
+BuildOption(conf):  -DgRPC_BUILD_TESTS=OFF
+BuildOption(conf):  -DgRPC_DOWNLOAD_ARCHIVES:BOOL=OFF
 
 BuildRequires:  abseil-cpp-devel
 BuildRequires:  cmake
 BuildRequires:  fdupes
 BuildRequires:  gcc-c++
 BuildRequires:  pkg-config
-BuildRequires:  pkgconfig(libcares) >= 1.19.1
-BuildRequires:  pkgconfig(openssl) >= 1.0.1
-BuildRequires:  pkgconfig(protobuf) >= 22
+BuildRequires:  pkgconfig(libcares)
+BuildRequires:  pkgconfig(openssl)
+BuildRequires:  pkgconfig(protobuf)
 BuildRequires:  pkgconfig(re2)
 BuildRequires:  pkgconfig(zlib)
 
@@ -53,7 +54,7 @@ framework that can run in any environment.
 
 %package        devel
 Summary:        Development files for gRPC
-Requires:       %{name} = %{version}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       pkgconfig(libcares)
 Requires:       pkgconfig(re2)
 
