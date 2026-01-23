@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -13,22 +14,21 @@ License:        MIT
 URL:            https://github.com/open-source-parsers/jsoncpp
 #!RemoteAsset
 Source0:        https://github.com/open-source-parsers/%{name}/archive/refs/tags/%{version}.tar.gz#/%{name}-%{version}.tar.gz
-
 BuildSystem:    meson
 
 BuildRequires:  gcc-c++
-BuildRequires:  meson >= 0.50.0
+BuildRequires:  meson
 BuildRequires:  pkgconfig
 
 %description
 JsonCpp is a C++ library that allows manipulating JSON values. This package
 contains the runtime shared library.
 
-%package devel
+%package        devel
 Summary:        Development files for the jsoncpp library
-Requires:       %{name} = %{version}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
-%description devel
+%description    devel
 This package contains the header files, libraries, and CMake files needed to
 develop applications that use the JsonCpp library.
 
