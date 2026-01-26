@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: BH1SCW <kongfanjun@iscas.ac.cn>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -10,13 +11,14 @@ Release:        %autorelease
 Summary:        Security and system auditing tool
 License:        GPL-3.0-only
 URL:            https://cisofy.com/lynis/
-VCS:            https://github.com/CISOfy/lynis
+VCS:            git:https://github.com/CISOfy/lynis
 #!RemoteAsset
 Source0:        https://cisofy.com/files/%{name}-%{version}.tar.gz
-
 BuildArch:      noarch
+
 BuildRequires:  pkgconfig(bash-completion)
 BuildRequires:  procps-ng
+
 Requires:       audit
 Requires:       e2fsprogs
 Requires:       kmod
