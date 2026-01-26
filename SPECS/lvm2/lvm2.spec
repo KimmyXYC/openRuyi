@@ -20,6 +20,7 @@ Release:        %autorelease
 Summary:        Userland logical volume management tools
 License:        LicenseRef-DMIT
 URL:            https://sourceware.org/lvm2
+VCS:            git:https://gitlab.com/lvmteam/lvm2.git
 #!RemoteAsset
 Source0:        https://sourceware.org/pub/lvm2/releases/LVM2.%{version}.tgz
 BuildSystem:    autotools
@@ -54,27 +55,27 @@ BuildOption(conf):  --with-default-use-devices-file=1
 BuildOption(conf):  --enable-readline
 
 BuildRequires:  make
-BuildRequires:  libselinux-devel
-BuildRequires:  libsepol-devel
+BuildRequires:  pkgconfig(libselinux)
+BuildRequires:  pkgconfig(libsepol)
 BuildRequires:  util-linux-devel
-BuildRequires:  ncurses-devel
-BuildRequires:  libedit-devel
+BuildRequires:  pkgconfig(ncurses)
+BuildRequires:  pkgconfig(libedit)
 BuildRequires:  libaio
-BuildRequires:  libaio-devel
+BuildRequires:  pkgconfig(libaio)
 BuildRequires:  pkgconfig
 BuildRequires:  kmod
-BuildRequires:  systemd-devel
+BuildRequires:  pkgconfig(systemd)
 BuildRequires:  systemd-units
-BuildRequires:  readline-devel
+BuildRequires:  pkgconfig(readline)
 %if %{with lvmdbusd}
-BuildRequires:  python3-devel
+BuildRequires:  pkgconfig(python3)
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-dbus
 BuildRequires:  python3-pyudev
 %endif
 
 Requires:       %{name}-libs = %{version}-%{release}
-Requires:       bash >= %{bash_version}
+Requires:       bash
 Requires(post): systemd-units
 Requires(preun): systemd-units
 Requires(postun): systemd-units
@@ -90,7 +91,7 @@ or more physical volumes and creating one or more logical volumes
 %package        devel
 Summary:        Development libraries and headers
 License:        LGPL-2.1-only
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       device-mapper-devel = %{device_mapper_version}-%{release}
 Requires:       device-mapper-event-devel = %{device_mapper_version}-%{release}
 Requires:       pkgconfig
@@ -138,7 +139,7 @@ Requires:       systemd
 This package contains the supporting userspace utility, dmsetup,
 for the kernel device-mapper.
 
-%package -n     device-mapper-devel
+%package     -n device-mapper-devel
 Summary:        Development libraries and headers for device-mapper
 Version:        %{device_mapper_version}
 License:        LGPL-2.1-only
