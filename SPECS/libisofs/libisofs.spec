@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -11,13 +12,17 @@ Release:        %autorelease
 Summary:        Library to create ISO 9660 disk images
 License:        GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:            https://libburnia-project.org/
+VCS:            git:https://dev.lovelyhq.com/libburnia/libisofs.git
 #!RemoteAsset
 Source:         https://files.libburnia-project.org/releases/libisofs-%{version}.tar.gz
 BuildSystem:    autotools
 
-BuildOption(conf): --disable-static
+BuildOption(conf):  --disable-static
 
-BuildRequires:  gcc libtool automake autoconf
+BuildRequires:  gcc
+BuildRequires:  libtool
+BuildRequires:  automake
+BuildRequires:  autoconf
 BuildRequires:  make
 BuildRequires:  pkgconfig(libacl)
 BuildRequires:  pkgconfig(zlib)
@@ -28,7 +33,7 @@ extensions like RockRidge or Joliet. It supports zisofs compression as well.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name} = %{version}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       pkgconfig
 
 %description    devel
