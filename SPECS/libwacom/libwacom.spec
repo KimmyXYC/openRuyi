@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -16,11 +17,11 @@ URL:            https://github.com/linuxwacom/libwacom
 Source:         https://github.com/linuxwacom/libwacom/archive/refs/tags/libwacom-%{version}.tar.gz
 BuildSystem:    meson
 
-BuildOption(conf): -Ddocumentation=disabled
+BuildOption(conf):  -Ddocumentation=disabled
 %if %{with tests}
-BuildOption(conf): -Dtests=enabled
+BuildOption(conf):  -Dtests=enabled
 %else
-BuildOption(conf): -Dtests=disabled
+BuildOption(conf):  -Dtests=disabled
 %endif
 
 BuildRequires:  meson
