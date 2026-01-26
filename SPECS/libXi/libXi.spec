@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Dingli Zhang <dingli@iscas.ac.cn>
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -13,41 +14,42 @@ Release:        %autorelease
 Summary:        X.Org X11 libXi runtime library
 License:        MIT
 URL:            https://www.x.org/
+VCS:            git:https://gitlab.freedesktop.org/xorg/lib/libxi.git
 #!RemoteAsset
-Source0:         https://www.x.org/releases/individual/lib/%{name}-%{version}.tar.xz
-
+Source0:        https://www.x.org/releases/individual/lib/%{name}-%{version}.tar.xz
 BuildSystem:    autotools
 
-BuildOption(conf): --disable-static
-BuildOption(conf): --disable-specs
+BuildOption(conf):  --disable-static
+BuildOption(conf):  --disable-specs
 %if %{with asciidoc}
 BuildOption(conf):  --with-asciidoc=yes
 %else
 BuildOption(conf):  --with-asciidoc=no
 %endif
 
-Requires:       libX11 >= 1.6
-BuildRequires:  pkgconfig(xorg-macros) >= 1.12
-BuildRequires:  pkgconfig(x11) >= 1.6
-BuildRequires:  pkgconfig(xext) >= 1.0.99.1
-BuildRequires:  pkgconfig(xextproto) >= 7.0.3
-BuildRequires:  pkgconfig(xfixes) >= 5
-BuildRequires:  pkgconfig(inputproto) >= 2.3.99.1
-BuildRequires:  pkgconfig(xproto) >= 7.0.13
+BuildRequires:  pkgconfig(xorg-macros)
+BuildRequires:  pkgconfig(x11)
+BuildRequires:  pkgconfig(xext)
+BuildRequires:  pkgconfig(xextproto)
+BuildRequires:  pkgconfig(xfixes)
+BuildRequires:  pkgconfig(inputproto)
+BuildRequires:  pkgconfig(xproto)
 BuildRequires:  xmlto
 %if %{with asciidoc}
 BuildRequires:  asciidoc
 %endif
 
+Requires:       libX11
+
 %description
 X.Org X11 libXi runtime library
 
-%package devel
+%package        devel
 Summary:        X.Org X11 libXi development package
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       pkgconfig
 
-%description devel
+%description    devel
 X.Org X11 libXi development package
 
 %files
