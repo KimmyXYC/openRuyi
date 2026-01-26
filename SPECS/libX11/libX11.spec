@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Dingli Zhang <dingli@iscas.ac.cn>
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -11,11 +12,12 @@ Release:        %autorelease
 Summary:        Core X11 protocol client library
 License:        MIT
 URL:            https://www.x.org
+VCS:            git:https://gitlab.freedesktop.org/xorg/lib/libx11.git
 #!RemoteAsset
 Source0:        https://www.x.org/releases/individual/lib/%{name}-%{version}.tar.xz
 BuildSystem:    autotools
 
-BuildOption(conf): --disable-silent-rules
+BuildOption(conf):  --disable-silent-rules
 
 BuildRequires:  pkgconfig(inputproto)
 BuildRequires:  pkgconfig(kbproto)
@@ -33,18 +35,18 @@ BuildRequires:  libtool
 %description
 Core X11 protocol client library.
 
-%package devel
+%package        devel
 Summary:        Development files for %{name}
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       pkgconfig
 
-%description devel
+%description    devel
 X.Org X11 libX11 development package
 
-%package doc
-Summary:    Documentation for %{name}
+%package        doc
+Summary:        Documentation for %{name}
 
-%description doc
+%description    doc
 The %{name}-doc package contains documentation for the %{name} library.
 
 %conf -p
