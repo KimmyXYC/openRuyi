@@ -32,8 +32,8 @@ BuildRequires:  gdbm-devel
 BuildRequires:  pkgconfig(libpipeline)
 BuildRequires:  pkgconfig(zlib)
 
-Provides:       man = %{version}
-Provides:       man-pages-reader = %{version}
+Provides:       man = %{version}-%{release}
+Provides:       man-pages-reader = %{version}-%{release}
 
 Requires(post): %{_sbindir}/update-alternatives
 Requires(postun): %{_sbindir}/update-alternatives
