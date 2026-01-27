@@ -11,17 +11,18 @@ Release:        %autorelease
 Summary:        GNU file archiving program
 License:        GPL-2.0-or-later AND LGPL-2.1-or-later
 URL:            http://www.lysator.liu.se/~nisse/nettle/
+VCS:            git:https://git.lysator.liu.se/nettle/nettle.git
 #!RemoteAsset
 Source0:        https://ftpmirror.gnu.org/gnu/%{name}/%{name}-%{version}.tar.gz
 #!RemoteAsset
 Source1:        https://ftpmirror.gnu.org/gnu/%{name}/%{name}-%{version}.tar.gz.sig
 BuildSystem:    autotools
 
-BuildRequires:  gmp-devel
+BuildOption(conf):  --disable-static
+
+BuildRequires:  pkgconfig(gmp)
 BuildRequires:  m4
 BuildRequires:  pkgconfig
-
-BuildOption(conf): --disable-static
 
 %description
 Nettle is a cryptographic library that is designed to fit easily in more
@@ -31,8 +32,8 @@ kernel space.
 
 %package        devel
 Summary:        Development headers for a low-level cryptographic library
-Requires:       %{name} = %{version}-%{release}
-Requires:       gmp-devel%{?_isa}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       pkgconfig(gmp)
 
 %description    devel
 Nettle is a cryptographic library that is designed to fit easily in more
