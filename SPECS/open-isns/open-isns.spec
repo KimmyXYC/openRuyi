@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -17,13 +18,13 @@ Source:         https://github.com/open-iscsi/open-isns/archive/refs/tags/v%{ver
 BuildSystem:    meson
 
 %if %{with slp}
-BuildOption(conf): -Dslp=enabled
+BuildOption(conf):  -Dslp=enabled
 %else
-BuildOption(conf): -Dslp=disabled
+BuildOption(conf):  -Dslp=disabled
 %endif
 
 BuildRequires:  meson >= 0.55.0
-BuildRequires:  openssl-devel
+BuildRequires:  pkgconfig(openssl)
 BuildRequires:  systemd-rpm-macros
 %if %{with slp}
 BuildRequires:  openslp-devel
@@ -38,7 +39,7 @@ which supplies directory services for iSCSI initiators and targets.
 
 %package        devel
 Summary:        Development files for open-isns
-Requires:       %{name} = %{version}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description    devel
 This package contains the header files and libraries needed to develop
