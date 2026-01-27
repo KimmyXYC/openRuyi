@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -14,11 +15,11 @@ URL:            https://github.com/open-iscsi/open-iscsi
 Source:         https://github.com/open-iscsi/open-iscsi/archive/refs/tags/%{version}.tar.gz
 BuildSystem:    meson
 
-BuildOption(conf): -Dc_args="%{optflags} -fno-strict-aliasing -fno-common -DOFFLOAD_BOOT_SUPPORTED"
-BuildOption(conf): -Discsi_sbindir=%{_sbindir}
-BuildOption(conf): -Ddbroot=%{_sharedstatedir}/iscsi
-BuildOption(conf): -Drulesdir=%{_udevrulesdir}
-BuildOption(conf): -Dlockdir=%{_rundir}/lock/iscsi
+BuildOption(conf):  -Dc_args="%{optflags} -fno-strict-aliasing -fno-common -DOFFLOAD_BOOT_SUPPORTED"
+BuildOption(conf):  -Discsi_sbindir=%{_sbindir}
+BuildOption(conf):  -Ddbroot=%{_sharedstatedir}/iscsi
+BuildOption(conf):  -Drulesdir=%{_udevrulesdir}
+BuildOption(conf):  -Dlockdir=%{_rundir}/lock/iscsi
 
 BuildRequires:  meson >= 0.54.0
 BuildRequires:  bison
@@ -26,8 +27,8 @@ BuildRequires:  db-devel
 BuildRequires:  flex
 BuildRequires:  pkgconfig(libkmod)
 BuildRequires:  pkgconfig(mount)
-BuildRequires:  open-isns-devel
-BuildRequires:  openssl-devel >= 1.1.1c
+BuildRequires:  pkgconfig(libisns)
+BuildRequires:  pkgconfig(openssl)
 BuildRequires:  perl
 BuildRequires:  pkg-config
 BuildRequires:  systemd-rpm-macros
@@ -50,7 +51,7 @@ to provide ARP and DHCP functionality for iSCSI offload.
 
 %package        devel
 Summary:        Development files for the iSCSI User-level Library
-Requires:       %{name} = %{version}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description    devel
 This package contains the open-iscsi user-level library include files
@@ -85,7 +86,6 @@ fi
 
 # TODO: fix tests.
 %check
-
 
 %files
 %license COPYING
