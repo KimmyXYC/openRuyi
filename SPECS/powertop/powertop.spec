@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Yafen Fang <yafen@iscas.ac.cn>
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -27,14 +28,15 @@ BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  systemd
 BuildRequires:  gettext-devel
-BuildRequires:  ncurses-devel
-BuildRequires:  pciutils-devel
-BuildRequires:  zlib-devel
-BuildRequires:  libnl-devel
+BuildRequires:  pkgconfig(ncurses)
+BuildRequires:  pkgconfig(libpci)
+BuildRequires:  pkgconfig(zlib)
+BuildRequires:  pkgconfig(libnl-3.0)
 BuildRequires:  bash-completion
+
 Requires(post): coreutils
 %{?systemd_requires}
-Provides:       bundled(kernel-event-lib)
+
 
 %description
 PowerTOP is a Linux* tool used to diagnose issues with power consumption and
@@ -52,6 +54,7 @@ autoreconf -fi || autoreconf -fi
 # Prepares cache files to ensure persistence of saved parameters and results upon first run
 install -Dd %{buildroot}%{_localstatedir}/cache/%{name}
 touch %{buildroot}%{_localstatedir}/cache/%{name}/{saved_parameters.powertop,saved_results.powertop}
+
 %find_lang %{name} --generate-subpackages
 
 install -Dpm 644 %{SOURCE1} %{buildroot}%{_unitdir}/powertop.service
