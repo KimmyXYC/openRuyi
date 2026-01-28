@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -40,7 +41,7 @@ It recognizes or produces over 200 different character sets.
 
 %package        devel
 Summary:        Header files for development using recode library
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description    devel
 This package provides the header files for a recode library.
@@ -49,6 +50,7 @@ This package provides the header files for a recode library.
 rm -f %{buildroot}%{_infodir}/dir
 # Avoid illegal package names
 rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/*@*
+
 %find_lang %{name} --generate-subpackages
 
 %files -f %{name}.lang
