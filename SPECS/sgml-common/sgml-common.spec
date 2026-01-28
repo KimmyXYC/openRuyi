@@ -13,6 +13,7 @@ Release:        %autorelease
 Summary:        Common SGML catalog and DTD files
 License:        GPL-3.0-or-later
 URL:            https://www.docbook.org/xml/
+# VCS: No VCS link available
 #!RemoteAsset
 Source0:        https://www.sourceware.org/pub/docbook-tools/new-trials/SOURCES/%{name}-%{version}.tgz
 Source1:        xml.dcl
