@@ -27,7 +27,7 @@ BuildRequires:  make
 BuildRequires:  libxslt
 BuildRequires:  pkgconfig(cmocka)
 BuildRequires:  pkgconfig(talloc)
-BuildRequires:  python3-devel
+BuildRequires:  pkgconfig(python3)
 BuildRequires:  python3-talloc-devel
 
 %description
@@ -39,7 +39,7 @@ tevent_req (Tevent Request) functions.
 
 %package        devel
 Summary:        Developer tools for the Tevent library
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       pkgconfig(talloc)
 
 %description devel
@@ -48,7 +48,7 @@ Header files needed to develop programs that link against the Tevent library.
 %package     -n python-tevent
 Summary:        Python bindings for the Tevent library
 Provides:       python3-tevent
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 %python_provide python3-tevent
 
 %description -n python-tevent
