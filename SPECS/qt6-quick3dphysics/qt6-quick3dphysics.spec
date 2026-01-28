@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: yyjeqhc <jialin.oerv@isrc.iscas.ac.cn>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -29,9 +30,9 @@ BuildRequires:  qt6-macros
 BuildRequires:  pkgconfig(Qt6Core)
 BuildRequires:  pkgconfig(Qt6Gui)
 BuildRequires:  qt6-base-private-devel >= %{version}
-BuildRequires:  qt6-declarative-devel >= %{version}
+BuildRequires:  pkgconfig(Qt6Quick) >= %{version}
 BuildRequires:  pkgconfig(Qt6ShaderTools) >= %{version}
-BuildRequires:  qt6-quick3d-devel >= %{version}
+BuildRequires:  pkgconfig(Qt6Quick3D) >= %{version}
 
 %description
 The Qt 6 Quick3D Physics library provides physics simulation capabilities for
@@ -39,17 +40,17 @@ Qt Quick 3D.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       pkgconfig(Qt6Gui)
-Requires:       qt6-declarative-devel
-Requires:       qt6-quick3d-devel
+Requires:       pkgconfig(Qt6Quick)
+Requires:       pkgconfig(Qt6Quick3D)
 
 %description    devel
 Development files for %{name}.
 
 %package        examples
 Summary:        Programming examples for %{name}
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description    examples
 Programming examples for %{name}.
