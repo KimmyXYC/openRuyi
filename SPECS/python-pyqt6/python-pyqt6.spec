@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: yyjeqhc <jialin.oerv@isrc.iscas.ac.cn>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -27,7 +28,7 @@ BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  pkgconfig(dbus-python)
 BuildRequires:  pkgconfig(libpulse-mainloop-glib)
 BuildRequires:  qt6-base-private-devel
-BuildRequires:  qt6-declarative-devel
+BuildRequires:  pkgconfig(Qt6Quick)
 BuildRequires:  pkgconfig(Qt6Svg)
 BuildRequires:  pkgconfig(Qt6SerialPort)
 BuildRequires:  pkgconfig(Qt6SerialBus)
@@ -77,7 +78,7 @@ Python 3 bindings for Qt6 base.
 %package        devel
 Summary:        Development files for python3-pyqt6
 Requires:       python3-pyqt6 = %{version}-%{release}
-Requires:       qt6-base-devel
+Requires:       pkgconfig(Qt6Core)
 Provides:       python3-pyqt6-devel
 %python_provide python3-pyqt6-devel
 
