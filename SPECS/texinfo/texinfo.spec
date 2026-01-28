@@ -25,7 +25,7 @@ BuildSystem:    autotools
 Patch0:         0001-texinfo-7.2-fix-perl-precedence-warnings.patch
 
 BuildRequires:  perl
-BuildRequires:  ncurses-devel
+BuildRequires:  pkgconfig(ncurses)
 BuildRequires:  help2man
 
 Requires:       perl
