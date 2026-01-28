@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: yyjeqhc <jialin.oerv@isrc.iscas.ac.cn>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -27,14 +28,13 @@ BuildRequires:  cmake
 BuildRequires:  gcc-c++
 BuildRequires:  desktop-file-utils
 BuildRequires:  qt6-macros
-BuildRequires:  qt6-base-devel
+BuildRequires:  pkgconfig(Qt6Core)
 BuildRequires:  qt6-base-private-devel
 BuildRequires:  pkgconfig(Qt6Core)
 BuildRequires:  pkgconfig(Qt6Gui)
 BuildRequires:  pkgconfig(Qt6Quick)
-BuildRequires:  qt6-declarative-devel
 BuildRequires:  pkgconfig(Qt6ShaderTools)
-BuildRequires:  qt6-quick3d-devel
+BuildRequires:  pkgconfig(Qt6Quick3D)
 BuildRequires:  hicolor-icon-theme
 BuildRequires:  pkgconfig
 
@@ -45,7 +45,7 @@ them as QML components.
 
 %package        examples
 Summary:        Programming examples for %{name}
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 %description    examples
 Programming examples for %{name}.
