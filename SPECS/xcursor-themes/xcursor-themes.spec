@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: (C) 2026 openRuyi Project Contributors
 # SPDX-FileContributor: jingyupu <pujingyu@iscas.ac.cn>
 # SPDX-FileContributor: yyjeqhc <jialin.oerv@isrc.iscas.ac.cn>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -11,7 +12,7 @@ Release:        %autorelease
 Summary:        Default set of cursor themes for X
 License:        X11
 URL:            http://xorg.freedesktop.org/
-# Seems to no git repo.
+VCS:            git:https://gitlab.freedesktop.org/xorg/data/cursors.git
 #!RemoteAsset:  sha256:95bae8f48823d894a05bf42dfbf453674ab7dbdeb11e2bc079e8525ad47378c8
 Source0:        http://xorg.freedesktop.org/releases/individual/data/xcursor-themes-%{version}.tar.xz
 BuildSystem:    autotools
