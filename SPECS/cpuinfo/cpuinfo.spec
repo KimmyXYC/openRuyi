@@ -3,13 +3,15 @@
 # SPDX-FileContributor: Jingkun Zheng <zhengjingkun@iscas.ac.cn>
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
 # SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
 %global commit 877328f188a3c7d1fa855871a278eb48d530c4c0
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
+
 Name:           cpuinfo
-Version:        20250915+git.%{shortcommit}
+Version:        0+git20260202.%{shortcommit}
 Release:        %autorelease
 Summary:        Library for obtaining CPU information
 License:        BSD-2-Clause
@@ -18,11 +20,11 @@ URL:            https://github.com/pytorch/cpuinfo
 Source:         https://github.com/pytorch/cpuinfo/archive/%{commit}/cpuinfo-%{commit}.tar.gz
 BuildSystem:    cmake
 
-BuildOption(conf): -DCPUINFO_LIBRARY_TYPE:STRING=shared
-BuildOption(conf): -DCPUINFO_BUILD_TOOLS:BOOL=ON
-BuildOption(conf): -DCPUINFO_BUILD_UNIT_TESTS:BOOL=OFF
-BuildOption(conf): -DCPUINFO_BUILD_MOCK_TESTS:BOOL=OFF
-BuildOption(conf): -DCPUINFO_BUILD_BENCHMARKS:BOOL=OFF
+BuildOption(conf):  -DCPUINFO_LIBRARY_TYPE:STRING=shared
+BuildOption(conf):  -DCPUINFO_BUILD_TOOLS:BOOL=ON
+BuildOption(conf):  -DCPUINFO_BUILD_UNIT_TESTS:BOOL=OFF
+BuildOption(conf):  -DCPUINFO_BUILD_MOCK_TESTS:BOOL=OFF
+BuildOption(conf):  -DCPUINFO_BUILD_BENCHMARKS:BOOL=OFF
 
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
@@ -31,10 +33,10 @@ BuildRequires:  gcc-c++
 cpuinfo is a library to detect essential for performance optimization
 information about host CPU.
 
-%package devel
+%package        devel
 Summary:        Development files for the cpuinfo library
 
-%description devel
+%description    devel
 This package contains the header files and development files for the
 cpuinfo library.
 
