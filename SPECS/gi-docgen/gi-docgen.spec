@@ -6,6 +6,7 @@
 # SPDX-License-Identifier: MulanPSL-2.0
 
 %global srcname gi_docgen
+
 Name:           gi-docgen
 Version:        2025.4
 Release:        %autorelease
@@ -36,8 +37,6 @@ Requires:       python3dist(markupsafe)
 Requires:       python3dist(packaging)
 Requires:       python3dist(pygments)
 Requires:       python3dist(typogrify)
-
-Provides:       bundled(js-fzy)
 
 %description
 GI-DocGen is a document generator for GObject-based libraries. GObject is the
