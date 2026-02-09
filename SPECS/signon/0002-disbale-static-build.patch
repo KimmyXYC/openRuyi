@@ -1,0 +1,14 @@
+diff --git a/lib/SignOn/SignOn.pro b/lib/SignOn/SignOn.pro
+index f6a1d61..225e747 100644
+--- a/lib/SignOn/SignOn.pro
++++ b/lib/SignOn/SignOn.pro
+@@ -1,7 +1,7 @@
+ TEMPLATE = subdirs
+ CONFIG   += ordered
+ SUBDIRS = \
+-    libsignon-qt-shared.pro \
+-    libsignon-qt-static.pro
++    libsignon-qt-shared.pro
++    # libsignon-qt-static.pro disabled due to DESTDIR path concatenation bug
+ 
+ include(doc/doc.pri)
