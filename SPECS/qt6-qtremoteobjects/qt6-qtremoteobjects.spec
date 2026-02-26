@@ -9,7 +9,7 @@
 %define real_version 6.10.1
 %define short_version 6.10
 
-Name:           qt6-remoteobjects
+Name:           qt6-qtremoteobjects
 Version:        6.10.1
 Release:        %autorelease
 Summary:        Qt6 - Qt Remote Objects
