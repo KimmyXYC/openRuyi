@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2026 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2026 openRuyi Project Contributors
 # SPDX-FileContributor: yyjeqhc <jialin.oerv@isrc.iscas.ac.cn>
+# SPDX-FileContributor: Yafen Fang <yafen@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -26,6 +27,7 @@ BuildRequires:  make
 BuildRequires:  gcc
 BuildRequires:  glibc-devel
 BuildRequires:  linux-headers
+BuildRequires:  pkgconfig(libkeyutils)
 BuildRequires:  pkgconfig(libaio)
 BuildRequires:  pkgconfig(libattr)
 BuildRequires:  pkgconfig(libbsd)
@@ -35,6 +37,7 @@ BuildRequires:  pkgconfig(libsctp)
 BuildRequires:  libatomic
 BuildRequires:  pkgconfig(zlib)
 BuildRequires:  pkgconfig(libxcrypt)
+BuildRequires:  judy-devel
 BuildRequires:  bash-completion
 
 %description
