@@ -87,6 +87,9 @@ Source0:        https://github.com/dotnet/dotnet/archive/refs/tags/%{upstream_ta
 #!RemoteAsset
 Source1:        https://github.com/dotnet/dotnet/releases/download/%{upstream_tag}/release.json
 
+# Fix an error caused by fortify CFLAGS with how .NET builds some assembly files
+Patch0:         runtime-disable-fortify-on-ilasm-parser.patch
+
 ExclusiveArch:  riscv64 x86_64
 
 BuildRequires:  aspnetcore-runtime-%{dotnet_major}
