@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: (C) 2025 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2025 openRuyi Project Contributors
 # SPDX-FileContributor: Zheng Junjie <zhengjunjie@iscas.ac.cn>
-# SPDX-FileContributor: yyjeqhc <1772413353@qq.com>
+# SPDX-FileContributor: yyjeqhc <jialin.oerv@isrc.iscas.ac.cn>
 # SPDX-FileContributor: misaka00251 <liuxin@iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
@@ -35,11 +35,8 @@ find . -type f -name \*.c -print0 | xargs -0 sed -i 's/YYSTACKSIZE 500/YYSTACKSI
     --prefix=%{_prefix} \
     --libdir=%{_libdir} \
     --mandir=%{_mandir} \
-    --disable-dependency-tracking
-
-%install -a
-ln -s yacc %{buildroot}%{_bindir}/byacc
-ln -s yacc.1 %{buildroot}%{_mandir}/man1/byacc.1
+    --disable-dependency-tracking \
+    --program-prefix=b
 
 %files
 %doc ACKNOWLEDGEMENTS NEW_FEATURES NO_WARRANTY README CHANGES NOTES
