@@ -206,7 +206,7 @@ BuildRequires:  roctracer-devel
 %endif
 
 Requires:       python3dist(dill)
-Requires:       python3dist(yaml)
+Requires:       python3dist(pyyaml)
 %if %{with rocm}
 Requires:       amdsmi
 %endif
