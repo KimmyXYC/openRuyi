@@ -13,7 +13,7 @@ Summary:        A hierarchical memory allocator with destructors
 License:        LGPL-3.0-or-later
 URL:            https://talloc.samba.org/
 VCS:            git:https://gitlab.com/samba-team/devel/samba.git
-#!RemoteAsset
+#!RemoteAsset:  sha256:dc46c40b9f46bb34dd97fe41f548b0e8b247b77a918576733c528e83abd854dd
 Source:         https://www.samba.org/ftp/talloc/talloc-%{version}.tar.gz
 BuildSystem:    autotools
 
@@ -71,8 +71,8 @@ Development files for the python3-talloc bindings.
 
 %files -n python3-talloc-devel
 %{_includedir}/pytalloc.h
-%{_libdir}/pkgconfig/pytalloc-util.cpython-*.pc
+%{_libdir}/pkgconfig/pytalloc-util.cpython-313-x86_64-linux-gnu.pc
 %{_libdir}/libpytalloc-util.cpython*.so
 
 %changelog
-%{?autochangelog}
+%autochangelog
