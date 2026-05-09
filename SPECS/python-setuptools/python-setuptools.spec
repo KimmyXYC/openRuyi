@@ -44,14 +44,14 @@ Name:           python-%{srcname}-bootstrap
 %else
 Name:           python-%{srcname}
 %endif
-Version:        80.9.0
+Version:        82.0.1
 Release:        %autorelease
 Summary:        Easily build and distribute Python packages
 License:        MIT AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0) AND Python-2.0.1 AND LGPL-3.0-only
 URL:            https://pypi.python.org/pypi/setuptools
 # TODO: Use %%{pypi_source %%{srcname} %%{version}} in the future - 251
 #       Otherwise https://files.pythonhosted.org/packages/source/a/abc/%%{srcname}-%%{version}.tar.gz
-#!RemoteAsset:  sha256:f36b47402ecde768dbfafc46e8e4207b4360c654f1f3bb84475f0a28628fb19c
+#!RemoteAsset:  sha256:7d872682c5d01cfde07da7bccc7b65469d3dca203318515ada1de5eda35efbf9
 Source0:        https://files.pythonhosted.org/packages/source/s/%{srcname}/%{srcname}-%{version}.tar.gz
 BuildArch:      noarch
 
@@ -63,6 +63,7 @@ BuildArch:      noarch
 Patch0:         0001-Revert-Always-rewrite-a-Python-shebang-to-python.patch
 
 BuildRequires:  pkgconfig(python3)
+BuildRequires:  expat
 
 %if %{with bootstrap}
 BuildRequires:  unzip
@@ -81,13 +82,8 @@ BuildRequires:  python-setuptools
 
 %{bundled}
 
-# It can't self provide this...
-Provides:       python3-setuptools = %{version}-%{release}
-
-# For users who might see ModuleNotFoundError: No module named 'pkg_resoureces'
-# NB: Those are two different provides: one contains underscore, the other hyphen
-%py_provides    python3-pkg_resources
-%py_provides    python3-pkg-resources
+Provides:       python3-%{srcname} = %{version}-%{release}
+%python_provide python3-%{srcname}
 
 %description
 Setuptools is a collection of enhancements to the Python distutils that allow
@@ -108,7 +104,7 @@ A Python wheel of setuptools to use with venv.
 %autosetup -p1 -n %{srcname}-%{version}
 
 # Strip shbang
-find setuptools pkg_resources -name \*.py | xargs sed -i -e '1 {/^#!\//d}'
+find setuptools -name \*.py | xargs sed -i -e '1 {/^#!\//d}'
 # Remove bundled exes
 rm -f setuptools/*.exe
 # Don't ship these
@@ -135,7 +131,7 @@ unzip %{_pyproject_wheeldir}/%{python_wheel_name} -d %{buildroot}%{python3_sitel
 echo rpm > %{buildroot}%{python3_sitelib}/setuptools-%{version}.dist-info/INSTALLER
 %else
 %pyproject_install
-%pyproject_save_files -l setuptools pkg_resources _distutils_hack
+%pyproject_save_files -l setuptools _distutils_hack
 sed -Ei '/\/tests\b/d' %{pyproject_files}
 %endif
 
@@ -152,7 +148,6 @@ install -p %{_pyproject_wheeldir}/%{python_wheel_name} -t %{buildroot}%{python_w
 %if %{with bootstrap}
 %{python3_sitelib}/setuptools-%{version}.dist-info/
 %license %{python3_sitelib}/setuptools-%{version}.dist-info/licenses/LICENSE
-%{python3_sitelib}/pkg_resources/
 %{python3_sitelib}/setuptools/
 %{python3_sitelib}/_distutils_hack/
 %endif
