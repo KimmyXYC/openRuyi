@@ -8,12 +8,12 @@
 %global pypi_name types_requests
 
 Name:           python-%{srcname}
-Version:        2.32.4.20260107
+Version:        2.33.0.20260508
 Release:        %autorelease
 Summary:        Typing stubs for requests
 License:        Apache-2.0
 URL:            https://github.com/python/typeshed
-#!RemoteAsset:  sha256:018a11ac158f801bfa84857ddec1650750e393df8a004a8a9ae2a9bec6fcb24f
+#!RemoteAsset:  sha256:81b2ae5f0d20967714a6aa5ef9284c05570d7cb06b7de8f2a77b918b63ddd411
 Source0:        https://files.pythonhosted.org/packages/source/t/%{srcname}/%{pypi_name}-%{version}.tar.gz
 BuildArch:      noarch
 BuildSystem:    pyproject
