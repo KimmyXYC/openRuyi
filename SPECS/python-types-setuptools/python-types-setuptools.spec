@@ -7,13 +7,13 @@
 %global srcname types-setuptools
 %global pypi_name types_setuptools
 
-Name:           python-types-setuptools
-Version:        80.10.0.20260124
+Name:           python-%{srcname}
+Version:        82.0.0.20260508
 Release:        %autorelease
 Summary:        Typing stubs for setuptools
 License:        Apache-2.0
 URL:            https://github.com/python/typeshed
-#!RemoteAsset:  sha256:1b86d9f0368858663276a0cbe5fe5a9722caf94b5acde8aba0399a6e90680f20
+#!RemoteAsset:  sha256:e76ade6f42ba9b4211636b84b65a8e55948a67ffe81f9a44e66b8af93d57e77e
 Source0:        https://files.pythonhosted.org/packages/source/t/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
 BuildArch:      noarch
 BuildSystem:    pyproject
@@ -25,8 +25,8 @@ BuildRequires:  pkgconfig(python3)
 BuildRequires:  python3dist(pip)
 BuildRequires:  python3dist(setuptools)
 
-Provides:       python3-types-setuptools = %{version}-%{release}
-%python_provide python3-types-setuptools
+Provides:       python3-%{srcname} = %{version}-%{release}
+%python_provide python3-%{srcname}
 
 %description
 Typeshed contains external type annotations for the Python standard library and Python builtins, as well as third-party packages that are contributed by people external to those projects.
