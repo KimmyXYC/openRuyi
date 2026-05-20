@@ -34,6 +34,7 @@ BuildRequires:  pkgconfig(xcb)
 BuildRequires:  pkgconfig(xkbcommon)
 
 Requires:       xdg-desktop-portal-wlr
+Requires:       xkeyboard-config
 
 %description
 Labwc is a wlroots-based window-stacking compositor for wayland, inspired by
