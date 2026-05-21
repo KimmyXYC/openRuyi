@@ -21,8 +21,8 @@ Summary:        Plasma screen management library
 License:        GPL-2.0-or-later
 URL:            https://www.kde.org
 VCS:            git:https://invent.kde.org/plasma/libkscreen.git
-#!RemoteAsset:  sha256:595bf06cd8b0c906800a34efd7d93e45add99f2f7e9248c0e8203a838ec861f9
-Source:         https://download.kde.org/stable/plasma/%{version}/%{name}-%{version}.tar.xz
+#!RemoteAsset:  sha256:f90b83e120fabb2881ec7706254fd05a089b167fbf49fe16631aeb34b579c160
+Source:         https://invent.kde.org/plasma/%{name}/-/archive/v%{version}/%{name}-v%{version}.tar.gz
 BuildSystem:    cmake
 
 BuildOption(conf):  -DBUILD_TESTING=OFF

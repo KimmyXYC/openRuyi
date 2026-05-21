@@ -26,8 +26,8 @@ Summary:        The KDE Plasma Workspace Components
 License:        GPL-2.0-or-later
 URL:            https://www.kde.org
 VCS:            git:https://invent.kde.org/plasma/plasma-workspace.git
-#!RemoteAsset:  sha256:29b0763bbbdd9e27416dce1fd939242d2588feef36c4cbae941c31964d531fd4
-Source:         https://download.kde.org/stable/plasma/%{version}/%{name}-%{version}.tar.xz
+#!RemoteAsset:  sha256:102ef093fb21e73b4a3f11edcc6934c5f1763366a31e5c049afb719840a4323f
+Source:         https://invent.kde.org/plasma/%{name}/-/archive/v%{version}/%{name}-v%{version}.tar.gz
 Source1:        sddm.conf
 Source2:        waitforkded.conf
 BuildSystem:    cmake

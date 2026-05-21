@@ -19,11 +19,14 @@ Summary:        Plasma library and runtime components based upon KF6 and Qt6
 License:        GPL-2.0-or-later AND LGPL-2.0-or-later
 URL:            https://www.kde.org
 VCS:            git:https://invent.kde.org/plasma/libplasma
-#!RemoteAsset
-Source:         https://download.kde.org/stable/plasma/%{version}/%{name}-%{version}.tar.xz
+#!RemoteAsset:  sha256:f19128fd9b96edebf44fbf9995bd1afa33ec817dfc6c52edc3b2d3f600b61fee
+Source:         https://invent.kde.org/plasma/%{name}/-/archive/v%{version}/%{name}-v%{version}.tar.gz
+BuildSystem:    cmake
+
+BuildOption(conf):  -DBUILD_TESTING=OFF
+BuildOption(conf):  -DBUILD_QCH:BOOL=TRUE
 
 BuildRequires:  doxygen
-BuildRequires:  fdupes
 BuildRequires:  kf6-extra-cmake-modules >= %{kf6_version}
 BuildRequires:  pkgconfig
 BuildRequires:  qt6-qtbase-private-devel >= %{qt6_version}
@@ -91,20 +94,12 @@ BuildArch:      noarch
 %description    doc
 Developer Documentation files for %{name} for use with KDevelop or QtCreator.
 
-%prep
-%autosetup -p1 -n %{name}-%{version}
-
-%build
-%cmake_kf6 -DBUILD_QCH:BOOL=TRUE
-
-%kf6_build
-
-%install
-%kf6_install
-
-%fdupes %{buildroot}
-
-%find_lang %{name} --all-name --with-man
+%install -a
+# todo: fix the name error.
+# Avoid illegal package names
+rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/*@*
+# Use langpacks macro to auto-split translations
+%find_lang %{name} --with-qt --all-name --generate-subpackages
 
 %files -f %{name}.lang
 %license LICENSES/*.txt
@@ -134,4 +129,4 @@ Developer Documentation files for %{name} for use with KDevelop or QtCreator.
 %{_kf6_qchdir}/*.tags
 
 %changelog
-%{?autochangelog}
+%autochangelog

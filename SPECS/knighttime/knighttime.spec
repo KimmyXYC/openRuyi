@@ -20,8 +20,8 @@ Summary:        Day-night cycle helper library
 License:        LGPL-2.1-or-later
 URL:            https://www.kde.org
 VCS:            git:https://invent.kde.org/plasma/knighttime.git
-#!RemoteAsset:  sha256:a12430bb7059f866bb2b2f4351965beb54b54d1502d482ac9f3b43a95fa736a3
-Source:         https://download.kde.org/stable/plasma/%{version}/%{name}-%{version}.tar.xz
+#!RemoteAsset:  sha256:70f84c9f4b45036e02d35cdff9d0d1f5cfbb5be973d3fe5af423a2dd07571918
+Source:         https://invent.kde.org/plasma/%{name}/-/archive/v%{version}/%{name}-v%{version}.tar.gz
 BuildSystem:    cmake
 
 BuildOption(conf):  -DBUILD_TESTING=OFF

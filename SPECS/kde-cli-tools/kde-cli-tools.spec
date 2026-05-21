@@ -14,8 +14,8 @@ Summary:        Additional CLI tools for KDE applications
 License:        GPL-2.0-or-later
 URL:            https://www.kde.org
 VCS:            git:https://invent.kde.org/plasma/kde-cli-tools.git
-#!RemoteAsset:  sha256:083b5d3c8e6315554547e1fc538c7d9f0671e08f7c52f2bc0a5a345027a12279
-Source:         https://download.kde.org/stable/plasma/%{version}/%{name}-%{version}.tar.xz
+#!RemoteAsset:  sha256:e96d9ba8385a80758bf0e0958257cd11721e90b1cc835ee6edbad87e6a1afca1
+Source:         https://invent.kde.org/plasma/%{name}/-/archive/v%{version}/%{name}-v%{version}.tar.gz
 BuildSystem:    cmake
 
 BuildOption(conf):  -DBUILD_TESTING=OFF
