@@ -8,7 +8,6 @@
 %define qt6_version 6.9.0
 
 %global _smp_ncpus_max 4
-%{!?_pam_vendordir:%global _pam_vendordir %{_sysconfdir}/pam.d}
 
 # Full Plasma 6 version (e.g. 6.0.0)
 %{!?_plasma6_bugfix: %define _plasma6_bugfix %{version}}
@@ -83,10 +82,9 @@ Conflicts:      kscreenlocker-devel
 Development files for Library and components for secure lock screen architecture.
 
 %install -a
-# Ship our own files to not depend on a display manager being installed (boo#1108329)
-install -D -m0644 %{SOURCE1} %{buildroot}%{_pam_vendordir}/kde
-install -D -m0644 %{SOURCE2} %{buildroot}%{_pam_vendordir}/kde-fingerprint
-install -D -m0644 %{SOURCE3} %{buildroot}%{_pam_vendordir}/kde-smartcard
+install -D -m0644 %{SOURCE1} %{buildroot}%{_pam_confdir}/kde
+install -D -m0644 %{SOURCE2} %{buildroot}%{_pam_confdir}/kde-fingerprint
+install -D -m0644 %{SOURCE3} %{buildroot}%{_pam_confdir}/kde-smartcard
 
 # todo: fix the name error.
 # Avoid illegal package names
@@ -102,9 +100,9 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/*@*
 %{_kf6_plugindir}/plasma/kcms/systemsettings/kcm_screenlocker.so
 %{_kf6_sharedir}/ksmserver/
 %{_libexecdir}/kscreenlocker_greet
-%{_pam_vendordir}/kde
-%{_pam_vendordir}/kde-fingerprint
-%{_pam_vendordir}/kde-smartcard
+%{_pam_confdir}/kde
+%{_pam_confdir}/kde-fingerprint
+%{_pam_confdir}/kde-smartcard
 %{_kf6_libdir}/libKScreenLocker.so.*
 
 %files devel
