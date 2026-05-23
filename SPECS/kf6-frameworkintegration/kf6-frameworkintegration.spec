@@ -52,7 +52,7 @@ Applications do not need to link to this directly.
 
 %package        plugin
 Summary:        Plugins responsible for better integration of Qt applications in KDE Workspace
-Requires:       plasma6-integration
+Requires:       plasma-integration
 
 %description    plugin
 Framework Integration is a set of plugins responsible for better
