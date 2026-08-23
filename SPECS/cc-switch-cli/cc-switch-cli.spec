@@ -62,6 +62,13 @@ BuildOption(check):  --skip services::webdav_sync::tests::detect_system_device_n
 # Skip localized message mismatch: the correct unsupported error is returned in Chinese.
 BuildOption(check):  --skip stream_check_openclaw_returns_unsupported_before_auth_extraction
 
+%ifarch riscv64
+# Skip unsupported self-update target: Self-update is not supported for platform linux/riscv64.
+BuildOption(check):  --skip cli::commands::update::tests::fetch_update_manifest_reads_latest_json_without_release_api
+# Skip unsupported self-update target: Self-update is not supported for platform linux/riscv64.
+BuildOption(check):  --skip cli::commands::update::tests::resolve_target_release_rejects_manifest_version_mismatch_for_explicit_version
+%endif
+
 BuildRequires:  cargo
 BuildRequires:  rust >= 1.91.1
 BuildRequires:  rust-rpm-macros
