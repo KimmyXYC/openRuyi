@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: (C) 2026 Institute of Software, Chinese Academy of Sciences (ISCAS)
 # SPDX-FileCopyrightText: (C) 2026 openRuyi Project Contributors
+# SPDX-FileContributor: Kimmy <yucheng.or@isrc.iscas.ac.cn>
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
@@ -17,6 +18,9 @@ URL:            https://github.com/DelSkayn/rquickjs.git
 Source:         https://static.crates.io/crates/%{crate_name}/%{full_version}/download#/%{name}-%{version}.tar.gz
 BuildArch:      noarch
 BuildSystem:    rustcrates
+
+# Add pre-generated bindings for standard RISC-V and openRuyi RVA23 targets.
+Patch2000:      2000-add-riscv64-linux-bindings.patch
 
 BuildRequires:  rust-rpm-macros
 
