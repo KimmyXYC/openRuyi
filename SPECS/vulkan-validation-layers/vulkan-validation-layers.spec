@@ -8,15 +8,18 @@
 %bcond x11 0
 
 Name:           vulkan-validation-layers
-Version:        1.4.335.0
+Version:        1.4.357.0
 Release:        %autorelease
 Summary:        Vulkan validation layers
 License:        Apache-2.0
 URL:            https://github.com/KhronosGroup/Vulkan-ValidationLayers
-#!RemoteAsset
-Source0:        https://github.com/KhronosGroup/Vulkan-ValidationLayers/archive/refs/tags/vulkan-sdk-%{version}.tar.gz
+#!RemoteAsset:  git+https://github.com/KhronosGroup/Vulkan-ValidationLayers.git#vulkan-sdk-%{version}
+#!CreateArchive
+Source0:        %{name}-%{version}.tar.gz
 BuildSystem:    cmake
 
+# Use packaged dependencies instead of downloading them during configuration.
+BuildOption(conf):  -DUPDATE_DEPS=OFF
 BuildOption(conf):  -DBUILD_WERROR=OFF
 BuildOption(conf):  -DGLSLANG_INSTALL_DIR=%{_prefix}
 BuildOption(conf):  -DBUILD_LAYER_SUPPORT_FILES:BOOL=ON
@@ -59,10 +62,10 @@ BuildRequires:  pkgconfig(xcb)
 Vulkan validation layers.
 
 %files
-%license LICENSE.txt
 %doc README.md CONTRIBUTING.md
+%license LICENSE.txt
 %{_datadir}/vulkan/explicit_layer.d/*.json
 %{_libdir}/libVkLayer_*.so
 
 %changelog
-%{?autochangelog}
+%autochangelog
