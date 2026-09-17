@@ -5,13 +5,14 @@
 # SPDX-License-Identifier: MulanPSL-2.0
 
 Name:           vulkan-utility-libraries
-Version:        1.4.335.0
+Version:        1.4.357.0
 Release:        %autorelease
 Summary:        Vulkan utility libraries
 License:        Apache-2.0
 URL:            https://github.com/KhronosGroup/Vulkan-Utility-Libraries
-#!RemoteAsset
-Source0:        https://github.com/KhronosGroup/Vulkan-Utility-Libraries/archive/refs/tags/vulkan-sdk-%{version}.tar.gz
+#!RemoteAsset:  git+https://github.com/KhronosGroup/Vulkan-Utility-Libraries.git#vulkan-sdk-%{version}
+#!CreateArchive
+Source0:        %{name}-%{version}.tar.gz
 BuildSystem:    cmake
 
 BuildOption(conf):  -DBUILD_TESTS:BOOL=ON
@@ -39,8 +40,8 @@ Requires:       vulkan-headers
 Development files for %{name}. This package contains static libraries and headers.
 
 %files devel
-%license LICENSE.md
 %doc README.md
+%license LICENSE.md
 %{_includedir}/vulkan/
 %dir %{_libdir}/cmake/VulkanUtilityLibraries/
 %{_libdir}/cmake/VulkanUtilityLibraries/*.cmake
@@ -48,4 +49,4 @@ Development files for %{name}. This package contains static libraries and header
 %{_libdir}/libVulkanSafeStruct.a
 
 %changelog
-%{?autochangelog}
+%autochangelog
