@@ -8,13 +8,14 @@
 %bcond x11 1
 
 Name:           vulkan-tools
-Version:        1.4.335
+Version:        1.4.357.0
 Release:        %autorelease
 Summary:        Vulkan tools
 License:        Apache-2.0
 URL:            https://github.com/KhronosGroup/Vulkan-Tools
-#!RemoteAsset
-Source0:        https://github.com/KhronosGroup/Vulkan-Tools/archive/refs/tags/v%{version}.tar.gz
+#!RemoteAsset:  git+https://github.com/KhronosGroup/Vulkan-Tools.git#vulkan-sdk-%{version}
+#!CreateArchive
+Source0:        %{name}-%{version}.tar.gz
 BuildSystem:    cmake
 
 BuildOption(conf):  -DBUILD_WSI_WAYLAND_SUPPORT=ON
@@ -43,16 +44,16 @@ BuildRequires:  pkgconfig(xrandr)
 BuildRequires:  pkgconfig(xcb)
 %endif
 
+Provides:       vulkan-demos = %{version}-%{release}
 # Vulkan-Tools dlopen's libvulkan.so.1 from this package
 Requires:       vulkan-loader
-Provides:       vulkan-demos = %{version}-%{release}
 
 %description
 Vulkan tools, including vulkaninfo and vkcube.
 
 %files
-%license LICENSE.txt
 %doc README.md CONTRIBUTING.md
+%license LICENSE.txt
 %{_bindir}/vulkaninfo
 %{_bindir}/vkcube
 %{_bindir}/vkcubepp
