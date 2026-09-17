@@ -5,13 +5,14 @@
 # SPDX-License-Identifier: MulanPSL-2.0
 
 Name:           vulkan-headers
-Version:        1.4.335.0
+Version:        1.4.357.0
 Release:        %autorelease
 Summary:        Vulkan Header files and API registry
 License:        Apache-2.0
 URL:            https://github.com/KhronosGroup/Vulkan-Headers
-#!RemoteAsset
-Source0:        https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/vulkan-sdk-%{version}.tar.gz
+#!RemoteAsset:  git+https://github.com/KhronosGroup/Vulkan-Headers.git#vulkan-sdk-%{version}
+#!CreateArchive
+Source0:        %{name}-%{version}.tar.gz
 BuildSystem:    cmake
 
 BuildRequires:  cmake
@@ -22,8 +23,8 @@ BuildRequires:  gcc-c++
 Vulkan Header files and API registry.
 
 %files
-%license LICENSE.md
 %doc README.md
+%license LICENSE.md
 %{_includedir}/vulkan/
 %{_includedir}/vk_video/
 %dir %{_datadir}/vulkan/
@@ -32,4 +33,4 @@ Vulkan Header files and API registry.
 %{_datadir}/cmake/VulkanHeaders/*.cmake
 
 %changelog
-%{?autochangelog}
+%autochangelog
