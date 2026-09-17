@@ -8,13 +8,14 @@
 %bcond x11 0
 
 Name:           vulkan-loader
-Version:        1.4.335.0
+Version:        1.4.357.0
 Release:        %autorelease
 Summary:        Vulkan ICD desktop loader
 License:        Apache-2.0
 URL:            https://github.com/KhronosGroup/Vulkan-Loader
-#!RemoteAsset
-Source0:        https://github.com/KhronosGroup/Vulkan-Loader/archive/refs/tags/vulkan-sdk-%{version}.tar.gz
+#!RemoteAsset:  git+https://github.com/KhronosGroup/Vulkan-Loader.git#vulkan-sdk-%{version}
+#!CreateArchive
+Source0:        %{name}-%{version}.tar.gz
 BuildSystem:    cmake
 
 BuildOption(conf):  -DBUILD_WSI_WAYLAND_SUPPORT=ON
@@ -51,9 +52,9 @@ loader for Windows, Linux, and MacOS.
 
 %package        devel
 Summary:        Development files for %{name}
+Provides:       vulkan-devel = %{version}-%{release}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       vulkan-headers
-Provides:       vulkan-devel = %{version}-%{release}
 
 %description    devel
 The %{name}-devel package contains libraries and header files for
@@ -65,8 +66,8 @@ mkdir -p %{buildroot}%{_sysconfdir}/vulkan/{explicit,implicit}_layer.d/ \
 %{buildroot}{%{_sysconfdir},%{_datadir}}/vulkan/icd.d
 
 %files
-%license LICENSE.txt
 %doc README.md CONTRIBUTING.md
+%license LICENSE.txt
 %dir %{_sysconfdir}/vulkan/
 %dir %{_sysconfdir}/vulkan/explicit_layer.d/
 %dir %{_sysconfdir}/vulkan/icd.d/
@@ -84,4 +85,4 @@ mkdir -p %{buildroot}%{_sysconfdir}/vulkan/{explicit,implicit}_layer.d/ \
 %{_libdir}/cmake/VulkanLoader/*.cmake
 
 %changelog
-%{?autochangelog}
+%autochangelog
