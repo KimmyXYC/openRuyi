@@ -6,13 +6,14 @@
 # SPDX-License-Identifier: MulanPSL-2.0
 
 Name:           spirv-tools
-Version:        1.4.350.0
+Version:        1.4.357.0
 Release:        %autorelease
 Summary:        API and commands for processing SPIR-V modules
 License:        Apache-2.0
 URL:            https://github.com/KhronosGroup/SPIRV-Tools
-#!RemoteAsset:  sha256:446b288fe76d3f31bbf9a405d62b97020ac0f135edb0ed5dbdf1136c488138f5
-Source0:        https://github.com/KhronosGroup/SPIRV-Tools/archive/refs/tags/vulkan-sdk-%{version}.tar.gz
+#!RemoteAsset:  git+https://github.com/KhronosGroup/SPIRV-Tools.git#vulkan-sdk-%{version}
+#!CreateArchive
+Source0:        %{name}-%{version}.tar.gz
 BuildSystem:    cmake
 
 BuildOption(conf):  -DBUILD_SHARED_LIBS=ON
@@ -39,8 +40,8 @@ Requires:       pkgconfig(SPIRV-Headers)
 Development files for %{name}.
 
 %files
-%license LICENSE
 %doc README.md CHANGES
+%license LICENSE
 %{_bindir}/spirv-*
 %{_libdir}/libSPIRV-Tools*.so
 
